@@ -28,12 +28,14 @@ endgroup() {
 ip_info=`curl -sk https://ip.cooluc.com`;
 [ -n "$ip_info" ] && export isCN=`echo $ip_info | grep -Po 'country_code\":"\K[^"]+'` || export isCN=US
 
-# script url
-if [ "$isCN" = "CN" ]; then
-    export mirror=https://init.cooluc.com
-else
-    export mirror=https://init2.cooluc.com
-fi
+ # script url
+ if [ "$isCN" = "CN" ]; then
+-    export mirror=https://init.cooluc.com
++    export mirror=https://raw.githubusercontent.com/2538maomao/r4s_build_script/refs/heads/master
+ else
+-    export mirror=https://init2.cooluc.com
++    export mirror=https://raw.githubusercontent.com/2538maomao/r4s_build_script/refs/heads/master
+ fi
 
 # github actions - caddy server
 if [ "$(whoami)" = "runner" ] && [ -z "$git_password" ]; then
